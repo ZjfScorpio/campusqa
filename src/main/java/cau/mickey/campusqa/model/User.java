@@ -11,6 +11,7 @@ public class User {
     private String salt;
     private String headUrl;
     private String email;
+    private int status=0;
 
     public String getEmail() {
         return email;
@@ -58,5 +59,13 @@ public class User {
 
     public void setHeadUrl(String headUrl) {
         this.headUrl = headUrl;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

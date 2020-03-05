@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">问题管理</h3>
+            </div>
+            <div class="box-body">
+                <table id="" class="table table-hover">
+                    <thead>
+                    <tr>
+                    <tr>
+                        <th>id</th>
+                        <th>标题</th>
+                        <th>用户id</th>
+                        <th>评论数量</th>
+                        <th>操作</th>
+                    </tr>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <#list questions as q>
+                    <tr>
+                        <td>${q.id}</td>
+                        <td>${q.title}</td>
+                        <td>${q.userId}</td>
+                        <td>${q.commentCount}</td>
+                        <td><a class="btn btn-danger" href="javascript:confirmDel(${q.id})">删除</a></td>
+                    </tr>
+                    </#list>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+
+    });
+
+
+    function confirmDel(id){
+        var flag = confirm("确定删除吗");
+        if(flag){
+            $.ajax({
+                type: "post",
+                url: "/admin/question_del",
+                data: {"id":id},
+                dataType: "json",
+                success: function(data){
+                    document.location.reload();
+                },
+                error:function(data){
+                    alert("删除失败，发生异常");
+                    document.location.reload();
+                }
+            });
+        }
+    }
+
+</script>

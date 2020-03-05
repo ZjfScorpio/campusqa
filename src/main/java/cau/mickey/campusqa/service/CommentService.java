@@ -45,5 +45,9 @@ public class CommentService {
     public int getUserCommentCount(int userId) {
         return commentDao.getUserCommentCount(userId);
     }
+    //根据用户id获取所有评论
+    public List<Comment> getCommentsByUserId(int userId){
+        return commentDao.getCommentsByUserId(userId);
+    }
 
 }

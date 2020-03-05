@@ -50,4 +50,9 @@ public interface CommentDao {
     @Delete({"delete from",TABLE_NAME,"where id=#{id}"})
     int delQuestion(int id);
 
+    //通过用户id查评论
+    @Select({"select ",SELECT_FIELDS," from ", TABLE_NAME, " where user_id=#{userId}"})
+    List<Comment> getCommentsByUserId(int userId);
+
+
 }

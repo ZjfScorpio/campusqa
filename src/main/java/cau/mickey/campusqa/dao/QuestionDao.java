@@ -31,4 +31,9 @@ public interface QuestionDao {
     @Delete({"delete from",TABLE_NAME,"where id=#{id}"})
     int delQuestion(int id);
 
+    //查询所有问题的id
+    @Select({"select ", "id", " from ",TABLE_NAME})
+    List<Integer> selectQuestionsId();
+
+
 }

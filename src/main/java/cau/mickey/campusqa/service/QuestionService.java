@@ -45,4 +45,11 @@ public class QuestionService {
     public int delQuestionById(int id){
         return questionDao.delQuestion(id);
     }
+
+    //查询所有问题的id
+    public List<Integer> getQuestionsId(){
+        return questionDao.selectQuestionsId();
+    }
+
+
 }

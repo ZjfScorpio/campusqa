@@ -5,6 +5,7 @@ import cau.mickey.campusqa.async.EventProducer;
 import cau.mickey.campusqa.async.EventType;
 import cau.mickey.campusqa.dao.LoginTicketDao;
 import cau.mickey.campusqa.dao.UserDao;
+import cau.mickey.campusqa.model.Comment;
 import cau.mickey.campusqa.model.LoginTicket;
 import cau.mickey.campusqa.model.User;
 import cau.mickey.campusqa.service.Redis.RedisAdapter;
@@ -35,6 +36,10 @@ public class UserService {
     @Autowired
     private EventProducer eventProducer;
 
+    public List<User> getUsers() {
+        return userDao.selectUsers();
+    }
+
     public User getUser(int id) {
         return userDao.selectById(id);
     }
@@ -42,6 +47,15 @@ public class UserService {
     public User getUserByName(String name){
         return userDao.selectByName(name);
     }
+
+    public void updateStatus(User user){
+        userDao.updateStatus(user);
+    }
+
+    public void deleteById(int id){
+         userDao.deleteById(id);
+    }
+
 
     public Map<String, String> login(String username, String password) {
         Map<String, String> map = new HashMap<>();

@@ -49,26 +49,7 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping(path = {"/user/{userId}"} , method = {RequestMethod.GET})
-    public String userIndex(Model model, @PathVariable("userId") int userId){
-        List<ViewObject> vos = getQuestions(userId,0,80);
-        model.addAttribute("vos", vos);
-        User user = userService.getUser(userId);
-        User me = envContext.getUser();
-        ViewObject vo = new ViewObject();
-        vo.set("me",me);
-        vo.set("user", user);
-        vo.set("commentCount", commentService.getUserCommentCount(userId));
-        vo.set("followerCount", followService.getFollowerCount(CampusQaUtil.ENTITY_USER, userId));
-        vo.set("followeeCount", followService.getFolloweeCount(userId, CampusQaUtil.ENTITY_USER));
-        if (envContext.getUser() != null) {
-            vo.set("followed", followService.isFollower(envContext.getUser().getId(), CampusQaUtil.ENTITY_USER, userId));
-        } else {
-            vo.set("followed", false);
-        }
-        model.addAttribute("profileUser", vo);
-        return "profile";
-    }
+
 
     private List<ViewObject> getQuestions(int userId, int offset,int limit){
         List<Question> questionList=qeustionService.getLatestQuestion(userId,offset,limit);

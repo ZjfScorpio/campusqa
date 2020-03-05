@@ -81,7 +81,10 @@ var oPopupAdd = new PopupAdd({
                     // 未登陆，跳转到登陆页面
                     if (oResult.code === 999) {
                         window.location.href = '/loginReg?next=' + window.encodeURIComponent(window.location.href);
-                    } else {
+                    }else if(oResult.code === 888){
+                        alert("对不起，你已被禁言，请联系管理员");
+                    }
+                    else {
                         alert("发帖成功！");
                         oConf.ok && oConf.ok.call(that);
                         oAdd.emit('ok');

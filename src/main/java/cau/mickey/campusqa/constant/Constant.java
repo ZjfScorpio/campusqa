@@ -14,11 +14,11 @@ public class Constant {
     public static final String PORT = "80";
 
     //redis服务器
-    public static final String REDIS_IP = remoteIp;
+    public static final String REDIS_IP = localIp;
     public static final int REDIS_PORT = 6379;
 
     //solr服务器
-    public static final String SOLR_IP = remoteIp;
+    public static final String SOLR_IP = localIp;
     public static final String SOLR_PORT = "8983";
     public static final String SOLR_CORE = "/solr/campusqa";
 

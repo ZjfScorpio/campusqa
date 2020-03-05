@@ -160,6 +160,8 @@
 
     <form action="/addComment" method="post">
         <input type="hidden" name="questionId" value="${question.id}"/>
+        <!-- 判断是否禁言-->
+        <#if user.status == 0 >
         <div id="zh-question-answer-form-wrap" class="zh-question-answer-form-wrap">
             <div class="zm-editable-editor-wrap" style="">
                 <div class="zm-editable-editor-outer">
@@ -175,6 +177,11 @@
                 </div>
             </div>
         </div>
+        <#else>
+        <br>
+        <br>
+        <h1 style="color: red;font-size: large">对不起，你已被禁言，请联系管理员</h1>
+        </#if>
     </form>
 
 </div>

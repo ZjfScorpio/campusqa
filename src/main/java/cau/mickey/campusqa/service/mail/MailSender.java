@@ -66,6 +66,7 @@ public class MailSender implements InitializingBean {
             mimeMessageHelper.setSubject(subject);
             mimeMessageHelper.setText(text, true);
             mailSender.send(mimeMessage);
+            logger.info("发送邮件成功");
             return true;
         } catch (Exception e) {
             logger.error("发送邮件失败" + e.getMessage());

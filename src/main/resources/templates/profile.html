@@ -23,12 +23,6 @@
 </script>
     <div class="zg-wrap zu-main clearfix " role="main">
         <div class="zm-profile-section-wrap zm-profile-followee-page">
-            <!--
-                <div class="zm-profile-section-head">
-                    <span class="zm-profile-section-name">
-                        <a href="#">${profileUser.user.name}</a> 关注了 ${profileUser.followerCount} 人
-                    </span>
-                </div>-->
                 <div class="zm-profile-section-list">
                     <div id="zh-profile-follows-list">
                         <div class="zh-general-list clearfix">
@@ -48,19 +42,16 @@
                                 <div class="zm-list-content-medium">
                                     <h2 class="zm-list-content-title"><a data-tip="p$t$buaabarty" href="/user/${profileUser.user.id}" class="zg-link">${profileUser.user.name}</a></h2>
 
-                                    <!-- <div class="zg-big-gray">计蒜客教研首席打杂</div> -->
                                     <div class="details zg-gray">
                                         <a  href="/user/${profileUser.user.id}/followers" class="zg-link-gray-normal">${profileUser.followerCount}粉丝</a>
                                         /
                                         <a  href="/user/${profileUser.user.id}/followees" class="zg-link-gray-normal">${profileUser.followeeCount}关注</a>
                                         /
-                                  <!--      <a  href="#" class="zg-link-gray-normal">${profileUser.commentCount} 回答</a>
+                                        <a  href="/user/${profileUser.user.id}" class="zg-link-gray-normal">${profileUser.questionCount}提问</a>
                                         /
-                                        <a  href="#" class="zg-link-gray-normal">548 赞同</a>-->
-                                        <span>${profileUser.commentCount} 回答</span>
-                                        <!--
-                                        <span>${profileUser} 赞同</span>
-                                        -->
+                                        <a  href="/user/${profileUser.user.id}/comments" class="zg-link-gray-normal">${profileUser.commentCount}回答</a>
+                                        /
+                                        <a  href="/user/${profileUser.user.id}/follow_questions" class="zg-link-gray-normal">收藏</a>
                                     </div>
                                 </div>
                             </div>
@@ -78,13 +69,6 @@
                     <i class="zg-icon zg-icon-feedlist"></i>他的提问
                     </#if>
                 </div>
-                    <!--
-                    <span class="zg-right zm-noti-cleaner-setting" style="list-style:none">
-                        <a href="https://guomzh.com" class="zg-link-gray-normal">
-                            <i class="zg-icon zg-icon-settings"></i>设置
-                        </a>
-                    </span>
-                    -->
                 <div class="zu-main-feed-con navigable" data-feedtype="topstory" id="zh-question-list">
                     <div id="js-home-feed-list" class="zh-general-list topstory clearfix">
                         <#list vos as vo>
@@ -101,16 +85,12 @@
                                         <meta itemprop="answer-id" content="389034">
                                         <meta itemprop="answer-url-token" content="13174385">
                                         <h2 class="feed-title">
-                                            <a class="question_link" target="_blank" href="/question/${vo.question.id}">${vo.question.title}</a></h2>
+                                            <a class="question_link" target="_blank" href="/question/${vo.question.id}">${vo.question.title}</a>
+                                        </h2>
                                         <div class="feed-question-detail-item">
                                             <div class="question-description-plain zm-editable-content"></div>
                                         </div>
                                         <div class="expandable entry-body">
-                                            <!--
-                                            <div class="zm-item-vote">
-                                                <a class="zm-item-vote-count js-expand js-vote-count" href="javascript:;" data-bind-votecount="">${vo.followCount!'0'}关注</a>
-                                            </div>
-                                            -->
                                             <div class="zm-item-answer-author-info">
                                                 <a class="author-link" data-tip="p$b$amuro1230" target="_blank" href="/user/${vo.user.id}">${vo.user.name}</a>
                                                 ，${vo.question.createdDate?string("yyyy-MM-dd HH:mm:ss")}
@@ -118,7 +98,9 @@
                                             <div class="zm-item-vote-info" data-votecount="4168" data-za-module="VoteInfo">
                                                 <span class="voters text">
                                                     <a href="#" class="more text">
-                                                        <span class="js-voteCount"></span>&nbsp;人赞同</a></span>
+                                                        <span class="js-voteCount"></span>&nbsp;人赞同
+                                                    </a>
+                                                </span>
                                             </div>
                                             <div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="123114" data-action="/answer/content" data-author-name="李淼" data-entry-url="/question/19857995/answer/13174385">
                                                 <div class="zh-summary summary clearfix">${vo.question.content}</div>
@@ -127,24 +109,14 @@
                                         <div class="feed-meta">
                                             <div class="zm-item-meta answer-actions clearfix js-contentActions">
                                                 <div class="zm-meta-panel">
-                                                    <!--
-                                                    <a data-follow="q:link" class="follow-link zg-follow meta-item" href="javascript:;" id="sfb-123114">
-                                                        <i class="z-icon-follow"></i>关注问题</a>
-                                                        -->
                                                     <a href="/question/${vo.question.id}" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
                                                         <i class="z-icon-comment"></i>${vo.question.commentCount} 条回答
                                                     </a>
                                                     <#if profileUser.me.id == profileUser.user.id >
-                                                    <!--
-                                                    <a href="/question/${vo.question.id}/del" name="delquestion" class="meta-item toggle-comment js-toggleCommentBox">
-                                                        删除提问
-                                                    </a>
-                                                    -->
                                                     <a href="javascript:delQuestion(${vo.question.id});" name="delquestion" class="meta-item toggle-comment js-toggleCommentBox">
                                                         删除提问
                                                     </a>
                                                     </#if>
-
 
                                                     <button class="meta-item item-collapse js-collapse">
                                                         <i class="z-icon-fold"></i>收起</button>
@@ -158,12 +130,10 @@
                         </div>
                         </#list>
                     </div>
-                  <!--  <a href="javascript:;" id="zh-load-more" class="zg-btn-white zg-r3px zu-button-more" style="cursor: none;">  </a>-->
                 </div>
             </div>
         </div>
     </div>
 <#include "js.html" />
-
 <script type="text/javascript" src="/scripts/main/site/profile.js"></script>
 <#include "footer.html" />

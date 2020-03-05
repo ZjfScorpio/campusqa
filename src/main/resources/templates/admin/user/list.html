@@ -1,0 +1,161 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">用户管理</h3>
+            </div>
+            <div class="box-body">
+                <table id="security_tab" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                    <tr>
+                        <th>id</th>
+                        <th>用户名</th>
+                        <th>headUrl</th>
+                        <th>邮箱</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var security_tab;
+
+    $(function () {
+
+        security_tab = $('#security_tab').DataTable({
+            "dom": 'itflp',
+            "processing": false,
+            "searching": false,
+            // "paging": true, //是否开启本地分页
+            // "serverSide": true, //启用服务器端分页
+            "bInfo": false,
+            "language": {"url": "adminlte/plugins/datatables/language.json"},
+            "ajax": {
+                "url": "/admin/users_page",
+                "type": "post",
+                // "data": function(d) {
+                //     //自定义查询参数
+                //     d.roleId = $("#roleId").val();
+                // }
+            },
+            "columns": [
+                {"data": "id"},
+                {"data": "name"},
+                {"data": "headUrl"},
+                {"data": "email"},
+                {"data":null},
+                 {"data": null}
+            ],
+            "columnDefs": [
+                {
+                    targets: 4,
+                    data: null,
+                    render: function (data) {
+                        if (data.status == 0) {
+                            return "正常";
+                        }
+                        if (data.status == 1) {
+                            return "禁言";
+                        }
+                        return "未知状态";
+                    }
+                },
+
+                {
+                    "targets": -1,
+                    "data": null,
+                    "render": function (data) {
+//					debugger;
+                        var btn = "";
+                        if(data.status==0){
+                            btn = '<a class="btn btn-xs btn-warning" callback="securityReload();" href="javascript:confirmSilence('+ data.id + ')">禁言</a> &nbsp;'
+                                + '<a class="btn btn-xs btn-danger" callback="securityReload();"  href="javascript:confirmDel('+ data.id + ')">删除</a>'
+                                +'</>';
+                        }
+                        else{
+                            btn = '<a class="btn btn-xs btn-warning" callback="securityReload();" href="javascript:confirmRestore('+ data.id + ')">恢复</a> &nbsp;'
+                                + '<a class="btn btn-xs btn-danger" callback="securityReload();"  href="javascript:confirmDel('+ data.id + ')">删除</a>'
+                                +'</>';
+                        }
+
+                        return btn;
+                    }
+                }
+
+
+                ]
+        });
+
+        //reloadTable(security_tab);
+
+    });
+
+
+
+    function confirmSilence(id){
+        var flag = confirm("确定禁言吗");
+        if(flag){
+            $.ajax({
+                type: "post",
+                url: "/admin/user_silence",
+                data: {"id":id},
+                dataType: "json",
+                success: function(data){
+                    reloadTable(security_tab);
+                },
+                error:function(data){
+                    alert("禁言失败，发生异常");
+                    reloadTable(security_tab);
+                }
+            });
+        }
+    }
+
+    function confirmRestore(id){
+        var flag = confirm("确定恢复吗");
+        if(flag){
+            $.ajax({
+                type: "post",
+                url: "/admin/user_silence",
+                data: {"id":id},
+                dataType: "json",
+                success: function(data){
+                    reloadTable(security_tab);
+                },
+                error:function(data){
+                    alert("恢复失败，发生异常");
+                    reloadTable(security_tab);
+                }
+            });
+        }
+    }
+
+    function confirmDel(id){
+        var flag = confirm("确定删除吗");
+        if(flag){
+            $.ajax({
+                type: "post",
+                url: "/admin/user_del",
+                data: {"id":id},
+                dataType: "json",
+                success: function(data){
+                    reloadTable(security_tab);
+                },
+                error:function(data){
+                    alert("删除失败，发生异常");
+                    reloadTable(security_tab);
+                }
+            });
+        }
+    }
+
+
+
+</script>

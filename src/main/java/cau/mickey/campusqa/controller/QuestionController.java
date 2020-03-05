@@ -62,6 +62,10 @@ public class QuestionController {
                 return CampusQaUtil.getJSONString(999);
             } else {
                 question.setUserId(envContext.getUser().getId());
+                //如果被禁言
+                int status = envContext.getUser().getStatus();
+                if(status==1)
+                    return CampusQaUtil.getJSONString(888);
             }
             if (questionService.addQuestion(question) > 0) {
                 eventProducer.fireEvent(new EventModel(EventType.ADD_QUESTION)
