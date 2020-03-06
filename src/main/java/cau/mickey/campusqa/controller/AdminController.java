@@ -47,9 +47,11 @@ public class AdminController {
 
     @RequestMapping(method = {RequestMethod.GET})
     public String admin(Model model) {
-        String userName = envContext.getUser().getName();
-        if (userName.equals("admin")) {
-            return "/admin/index";
+        if(envContext.getUser()!=null){
+            String userName = envContext.getUser().getName();
+            if (userName.equals("admin")) {
+                return "/admin/index";
+            }
         }
         return "/admin/login";
     }

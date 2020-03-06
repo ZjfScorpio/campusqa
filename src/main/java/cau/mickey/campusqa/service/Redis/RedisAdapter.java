@@ -30,7 +30,7 @@ public class RedisAdapter implements InitializingBean {
         config.setMaxIdle(50);
         config.setMaxWaitMillis(1000 * 100);
         config.setTestOnBorrow(false);
-        pool = new JedisPool(config,Constant.REDIS_IP,Constant.REDIS_PORT,10000);
+        pool = new JedisPool(config,Constant.REDIS_IP,Constant.REDIS_PORT,10000,"123qwe");
     }
 
     public long sadd(String key, String value) {
