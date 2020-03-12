@@ -44,7 +44,7 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown user user-menu">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="adminlte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> <span
+                        <img src="adminlte/dist/img/logo.png" class="user-image" alt="User Image"> <span
                             class="hidden-xs">校园自动应答平台管理后台</span>
                     </a>
                     <ul class="dropdown-menu">

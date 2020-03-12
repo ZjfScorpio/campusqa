@@ -1,125 +1,82 @@
 <#include "header.html" />
 <#include "author.html" />
-<link rel="stylesheet" href="../styles/index.css">
-<link rel="stylesheet" href="../styles/detail.css">
-<style>
-
-</style>
-<script>
-    //删除评论
-    function delComment(id) {
-        var flag = confirm("确定要删除吗?")
-        if(flag){
-            $.ajax({
-                type: "post",
-                url: "/comment/del",
-                data: {"id":id},
-                dataType: "json",
-                success: function(data){
-                    document.location.reload();
-                },
-                error:function(data){
-                    alert("删除失败，发生异常");
-                    document.location.reload();
-                }
-            });
-        }
-
-    }
-</script>
-<div class="zg-wrap zu-main clearfix " role="main">
-    <div class="zm-profile-section-wrap zm-profile-followee-page">
-        <div class="zm-profile-section-list">
-            <div id="zh-profile-follows-list">
-                <div class="zh-general-list clearfix">
-                    <div class="zm-profile-card zm-profile-section-item zg-clear no-hovercard">
-                        <div class="zg-right">
-                            <#if profileUser.followed == true >
-                            <button class="zg-btn zg-btn-unfollow zm-rich-follow-btn small nth-0
-                                    js-follow-user" data-status="1" data-id="${profileUser.user.id}">取消关注</button>
-                            <#else>
-                            <button class="zg-btn zg-btn-follow zm-rich-follow-btn small nth-0
-                                    js-follow-user" data-id="${profileUser.user.id}">关注</button>
-                        </#if>
-                    </div>
-                    <a title="Barty" class="zm-item-link-avatar" href="/user/${profileUser.user.id}">
-                        <img src="${profileUser.user.headUrl}" class="zm-item-img-avatar">
-                    </a>
-                    <div class="zm-list-content-medium">
-                        <h2 class="zm-list-content-title"><a data-tip="p$t$buaabarty" href="/user/${profileUser.user.id}" class="zg-link">${profileUser.user.name}</a></h2>
-
-                        <div class="details zg-gray">
-                            <a  href="/user/${profileUser.user.id}/followers" class="zg-link-gray-normal">${profileUser.followerCount}粉丝</a>
-                            /
-                            <a  href="/user/${profileUser.user.id}/followees" class="zg-link-gray-normal">${profileUser.followeeCount}关注</a>
-                            /
-                            <a  href="/user/${profileUser.user.id}" class="zg-link-gray-normal">${profileUser.questionCount} 提问</a>
-                            /
-                            <a  href="/user/${profileUser.user.id}/comments" class="zg-link-gray-normal">${profileUser.commentCount} 回答</a>
-                            /
-                            <a  href="/user/${profileUser.user.id}/follow_questions" class="zg-link-gray-normal">收藏</a>
-                        </div>
-                    </div>
-                </div>
+<link rel="stylesheet" href="../../styles/result.css">
+<link rel="stylesheet" href="../../styles/detail.css">
+<link rel="stylesheet" type="text/css" href="../../styles/common.css">
+<div id="main">
+    <div class="zg-wrap zu-main clearfix ">
+        <span class="zm-profile-section-name">
+            <a href="/user/${profileUser.user.id}">返回上一级</a>
+        </span>
+        <br>
+        <div class="zm-profile-section-wrap zm-profile-followee-page">
+            <div class="zm-profile-section-head">
+                    <span class="zm-profile-section-name">
+                        <a href="/user/${profileUser.user.id}">${profileUser.user.name}</a> 收藏了 ${followeeCount}个问题
+                    </span>
             </div>
-        </div>
-    </div>
-</div>
-<div class="zu-main-content">
-    <div class="zu-main-content-inner">
+            <div class="zm-profile-section-list">
+                <div id="zh-profile-follows-list">
+                    <div class="zh-general-list clearfix">
+                        <#list followQuestions as followQuestion>
+                        <div class="zm-profile-card zm-profile-section-item zg-clear no-hovercard">
+                            <!-- 取消收藏按钮 -->
+<!--                            <#if vo.followQ == true >-->
+<!--                            <div class="zg-right">-->
+<!--                                <button class="follow-button zg-follow zg-btn-white js-follow-question" data-status="1" data-id="${vo.question.id}">取消收藏</button>-->
+<!--                            </div>-->
+<!--                            <#else>-->
+<!--                            <div class="zg-right">-->
+<!--                                <button class="follow-button zg-follow zg-btn-green js-follow-question" data-id="${vo.question.id}">收藏</button>-->
+<!--                            </div>-->
+<!--                        </#if>-->
+                        <a title="Barty" class="zm-item-link-avatar" href="/user/${profileUser.user.id}">
+                            <img src="${profileUser.user.headUrl}" class="zm-item-img-avatar">
+                        </a>
+                        <div class="zm-list-content-medium">
+                            <h2 class="feed-title">
 
-        <div class="zg-section" id="zh-home-list-title">
-            <#if profileUser.me.id == profileUser.user.id >
-            <i class="zg-icon zg-icon-feedlist"></i>我的收藏
-            <#else>
-            <i class="zg-icon zg-icon-feedlist"></i>他的收藏
-        </#if>
-    </div>
-    <div class="zu-main-feed-con navigable" data-feedtype="topstory" id="zh-question-list">
-        <div id="js-home-feed-list" class="zh-general-list topstory clearfix">
-            <#list followQuestions as followQuestion>
-            <div class="feed-item folding feed-item-hook feed-item-2
-                        " feed-item-a="" data-type="a" id="feed-2" data-za-module="FeedItem" data-za-index="">
-                <meta itemprop="ZReactor" data-id="389034" data-meta="">
-                <div class="feed-item-inner">
-                    <div class="feed-main">
-                        <div class="feed-content" data-za-module="AnswerItem">
-                            <meta itemprop="answer-id" content="389034">
-                            <meta itemprop="answer-url-token" content="13174385">
+                                <!--问题链接展示，点击后跳转到该问题具体页面-->
+                                <a class="question_link" href="/question/${followQuestion.id}">${followQuestion.title}</a></h2>
+                            <div class="feed-question-detail-item">
+                                <div class="question-description-plain zm-editable-content"></div>
+                            </div>
+                            <div class="expandable entry-body">
+                                <div class="zm-item-answer-author-info">
 
-                                <h2 class="feed-title">
-                                    <a class="question_link" target="_blank" href="/question/${followQuestion.id}" style="color:#25bb9b">${followQuestion.title}</a>
-                                </h2>
-                                <div class="expandable entry-body">
-                                    <div class="zm-item-answer-author-info">
-                                        <a class="author-link" data-tip="p$b$amuro1230" target="_blank" href="/question/${followQuestion.id}">${followQuestion.content}</a>
-                                    </div>
-                                </div>
+                                    <!--展示用户名字，点击后跳转到用户主页-->
 
-                            <div class="feed-meta">
-                                <div class="zm-item-meta answer-actions clearfix js-contentActions">
-                                    <div class="zm-meta-panel">
-                                        <#if profileUser.me.id == profileUser.user.id >
-                                        <a href="javascript:delComment(${comment.comment.id});" name="delquestion" class="meta-item toggle-comment js-toggleCommentBox">
-
-                                        </a>
-                                    </#if>
+                                    <a class="author-link" data-tip="p$b$amuro1230"  href="/user/${profileUser.user.id}">${profileUser.user.name}</a>
+                                    <span title="问题创建时间" class="bio">&nbsp;&nbsp;${followQuestion.createdDate?string("yyyy-MM-dd HH:mm:ss")}</span>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-                </div>
+
+                </#list>
             </div>
+            <!--
+                    <a aria-role="button" class="zg-btn-white zu-button-more">更多</a>
+                    -->
         </div>
-    </#list>
-</div>
-<!--  <a href="javascript:;" id="zh-load-more" class="zg-btn-white zg-r3px zu-button-more" style="cursor: none;">  </a>-->
-</div>
+    </div>
 </div>
 </div>
 </div>
 <#include "js.html" />
-
-<script type="text/javascript" src="/scripts/main/site/profile.js"></script>
+<script type="text/javascript" src="/scripts/main/site/detail.js"></script>
+<script type="text/javascript" src="/scripts/main/jquery.js"></script>
+<script type="text/javascript" src="/scripts/main/base/base.js"></script>
+<script type="text/javascript" src="/scripts/main/base/util.js"></script>
+<script type="text/javascript" src="/scripts/main/base/event.js"></script>
+<script type="text/javascript" src="/scripts/main/util/action.js"></script>
+<script type="text/javascript" src="/scripts/main/util/business.js"></script>
+<script type="text/javascript" src="/scripts/main/component/component.js"></script>
+<script type="text/javascript" src="/scripts/main/component/popup.js"></script>
+<script type="text/javascript" src="/scripts/main/component/popupAdd.js"></script>
+<script type="text/javascript" src="/scripts/main/component/popupMsg.js"></script>
+<script type="text/javascript" src="/scripts/main/site/home.js"></script>
+<script async="" src="/scripts/ga.js"></script>
+<script type="text/javascript" src="/scripts/main/jquery.js"></script>
+<script type="text/javascript" src="/scripts/main/site/follow.js"></script>
 <#include "footer.html" />

@@ -108,6 +108,8 @@ public class UserController {
     //获取用户所有关注的问题
     @RequestMapping(path = {"/user/{userId}/follow_questions"} , method = {RequestMethod.GET})
     public String userFollowQuestions(Model model, @PathVariable("userId") int userId){
+
+
     //old
         List<ViewObject> vos = getQuestions(userId,0,2000);
         //model
@@ -146,6 +148,7 @@ public class UserController {
                followQuestions.add(question);
            }
        }
+       model.addAttribute("followeeCount",followQuestions.size());
         model.addAttribute("followQuestions", followQuestions);
         return "follow_questions";
     }

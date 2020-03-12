@@ -155,7 +155,8 @@ public class UserService {
                 user.setName(username);
                 user.setEmail(email);
                 user.setSalt(UUID.randomUUID().toString().substring(0, 5));
-                user.setHeadUrl(String.format("https://images.nowcoder.com/head/%dm.png", random.nextInt(1000)));
+                //user.setHeadUrl(String.format("https://images.nowcoder.com/head/%dm.png", random.nextInt(1000)));
+                user.setHeadUrl(String.format("/images/head/head%d.jpg", random.nextInt(21)));
                 user.setPassword(CampusQaUtil.MD5(password + user.getSalt()));
                 userDao.addUser(user);
                 redisAdapter.del(p);

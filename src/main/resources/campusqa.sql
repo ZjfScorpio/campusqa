@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 本地
-Source Server Version : 50725
-Source Host           : localhost:3306
+Source Server         : zjfyun
+Source Server Version : 50647
+Source Host           : 47.102.193.234:3306
 Source Database       : campusqa
 
 Target Server Type    : MYSQL
-Target Server Version : 50725
+Target Server Version : 50647
 File Encoding         : 65001
 
-Date: 2020-03-05 20:37:54
+Date: 2020-03-12 11:35:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -64,7 +64,7 @@ CREATE TABLE `login_ticket` (
   `status` int(11) DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `ticket` (`ticket`)
-) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=137 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of login_ticket
@@ -175,6 +175,36 @@ INSERT INTO `login_ticket` VALUES ('103', '41', '44507cb00e8e49f28935b0e255decc7
 INSERT INTO `login_ticket` VALUES ('104', '40', '343750bb87f945e5aa7aa876013ae550', '2020-03-20 19:53:51', '1');
 INSERT INTO `login_ticket` VALUES ('105', '42', '492e852e4c7045f989ecda2cee2da8d0', '2020-03-20 20:18:29', '0');
 INSERT INTO `login_ticket` VALUES ('106', '42', 'a44abf2b57f545c8b13c72bb0b673923', '2020-03-20 20:21:01', '0');
+INSERT INTO `login_ticket` VALUES ('107', '42', '4a125e3af44749008eb64e1f3fc662e8', '2020-03-21 19:53:50', '1');
+INSERT INTO `login_ticket` VALUES ('108', '42', '0fe6f82a0d3746139fd04d89355832fe', '2020-03-21 20:59:06', '0');
+INSERT INTO `login_ticket` VALUES ('109', '40', '30d60dd3258d4a37b4ed1af7d01c6cd9', '2020-03-22 11:15:07', '0');
+INSERT INTO `login_ticket` VALUES ('110', '42', 'b97f05d1be7e46c982d12b69853bc170', '2020-03-26 11:33:30', '1');
+INSERT INTO `login_ticket` VALUES ('111', '41', '9c765f85732a4ac5b825112f4a2ea60c', '2020-03-26 12:58:58', '1');
+INSERT INTO `login_ticket` VALUES ('112', '51', '9a6ce0b62f9e457fa6ba53e40a25799f', '2020-03-26 13:32:45', '0');
+INSERT INTO `login_ticket` VALUES ('113', '40', '88f06ab41c1d4f5dbd3064f8ae1b4429', '2020-03-26 14:57:02', '1');
+INSERT INTO `login_ticket` VALUES ('114', '40', '9f4be587ca2d4bfe91469cdf420140e8', '2020-03-26 14:59:28', '1');
+INSERT INTO `login_ticket` VALUES ('115', '42', 'd34f83fd37eb43ca98c2432284fd43fc', '2020-03-26 14:59:47', '1');
+INSERT INTO `login_ticket` VALUES ('116', '40', 'c8d81466e0714aa0b78b025944e08e35', '2020-03-26 15:09:34', '1');
+INSERT INTO `login_ticket` VALUES ('117', '40', 'c88df5a96eb440ca94410a80a313a355', '2020-03-26 15:44:05', '1');
+INSERT INTO `login_ticket` VALUES ('118', '41', '3597e177f89b44b5ba970c2ffeb03823', '2020-03-26 16:02:49', '0');
+INSERT INTO `login_ticket` VALUES ('119', '41', '026a8faf3efe452886aa44a8f8fda2eb', '2020-03-26 16:03:28', '0');
+INSERT INTO `login_ticket` VALUES ('120', '40', '55869f9969744ac88c842f21badaef33', '2020-03-26 16:18:19', '1');
+INSERT INTO `login_ticket` VALUES ('121', '40', '68061623bf924b0aab41c0c686a0c48c', '2020-03-26 16:48:00', '0');
+INSERT INTO `login_ticket` VALUES ('122', '40', '9d817611ff914426b675ef62b0339866', '2020-03-26 17:21:02', '0');
+INSERT INTO `login_ticket` VALUES ('123', '42', '1fe011cbd62a42dc97a21c59c3677135', '2020-03-26 17:21:05', '0');
+INSERT INTO `login_ticket` VALUES ('124', '40', 'b498da8d311444c6bd28d3518672f4eb', '2020-03-26 17:23:17', '0');
+INSERT INTO `login_ticket` VALUES ('125', '40', 'f36279500c9747e4a7508ac10d927754', '2020-03-26 17:23:21', '1');
+INSERT INTO `login_ticket` VALUES ('126', '42', '0dc8d49e4f6d42d3a6ce5bd2f98ff1fa', '2020-03-26 17:34:52', '1');
+INSERT INTO `login_ticket` VALUES ('127', '42', 'cd8175cf10834d51a71c9e1cf0c90df9', '2020-03-26 17:38:03', '1');
+INSERT INTO `login_ticket` VALUES ('128', '40', '5178f89c28aa4c4bbe457b731b1dde39', '2020-03-26 17:49:00', '1');
+INSERT INTO `login_ticket` VALUES ('129', '40', 'a4888485bb124d9981853cb345704766', '2020-03-26 17:59:53', '1');
+INSERT INTO `login_ticket` VALUES ('130', '40', '21a84b5bed944918801f6371f4bf2e3c', '2020-03-26 19:42:54', '1');
+INSERT INTO `login_ticket` VALUES ('131', '40', 'fbc89dbd8bbe447ab7163e6d52b496e5', '2020-03-26 20:02:07', '1');
+INSERT INTO `login_ticket` VALUES ('132', '50', 'ad8ebe705d7c4b8a99ac4dd8eb8df9d5', '2020-03-26 20:14:23', '0');
+INSERT INTO `login_ticket` VALUES ('133', '50', '78651dcc808d4f8a98ede6dd3abb4121', '2020-03-26 20:16:43', '0');
+INSERT INTO `login_ticket` VALUES ('134', '42', '5e612f1effcc4124b98393e64b7dc63f', '2020-03-26 20:16:47', '1');
+INSERT INTO `login_ticket` VALUES ('135', '42', '910db15c49244f90b668eb047e46697b', '2020-03-26 21:14:21', '1');
+INSERT INTO `login_ticket` VALUES ('136', '42', 'b844b5f4117a4a2c9e0f595cb333228e', '2020-03-26 21:41:48', '0');
 
 -- ----------------------------
 -- Table structure for message
@@ -191,7 +221,7 @@ CREATE TABLE `message` (
   PRIMARY KEY (`id`),
   KEY `conversation_index` (`conversation_id`),
   KEY `created_date` (`created_date`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of message
@@ -246,6 +276,10 @@ INSERT INTO `message` VALUES ('57', '3', '41', '用户 吴彦祖 关注了您的
 INSERT INTO `message` VALUES ('58', '3', '42', '用户 吴彦祖 关注了您的问题 \" 00后的你现在有多少存款？ \" <a href=\"/question/95\">点击查看</a>', '0', '3_42', '2020-03-05 19:58:17');
 INSERT INTO `message` VALUES ('59', '3', '42', '用户 吴彦祖 关注了您的问题 \" 小米这几年为什么要把华为作为重要对手看待？ \" <a href=\"/question/94\">点击查看</a>', '0', '3_42', '2020-03-05 19:58:23');
 INSERT INTO `message` VALUES ('60', '3', '42', '用户 刘德华 关注了您的问题 \" 小米这几年为什么要把华为作为重要对手看待？ \" <a href=\"/question/94\">点击查看</a>', '0', '3_42', '2020-03-05 20:09:48');
+INSERT INTO `message` VALUES ('61', '3', '41', '用户 admin 关注了您的问题 \" 有哪些你结婚后才明白的道理？ \" <a href=\"/question/97\">点击查看</a>', '0', '3_41', '2020-03-06 20:55:16');
+INSERT INTO `message` VALUES ('62', '3', '40', '用户 admin 关注了您的问题 \" 为什么最难不过二叉树的算法出现在面试题中都会被应聘者抱怨？ \" <a href=\"/question/99\">点击查看</a>', '0', '3_40', '2020-03-06 20:55:25');
+INSERT INTO `message` VALUES ('63', '3', '42', '用户 吴彦祖 关注了您的问题 \" 00后的你现在有多少存款？ \" <a href=\"/question/95\">点击查看</a>', '0', '3_42', '2020-03-07 11:15:45');
+INSERT INTO `message` VALUES ('64', '20', '21', '你好，这是测试消息', '1', '20_21', '2020-03-08 19:42:07');
 
 -- ----------------------------
 -- Table structure for question
@@ -259,7 +293,7 @@ CREATE TABLE `question` (
   `created_date` datetime DEFAULT NULL,
   `comment_count` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of question
@@ -285,15 +319,17 @@ CREATE TABLE `user` (
   `status` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('40', '吴彦祖', '67D5B0882233FDAD97B1014E8429FE69', '5b9c6', 'https://images.nowcoder.com/head/994m.png', '1594899926@qq.com', '0');
-INSERT INTO `user` VALUES ('41', '刘德华', '5B67F0A01C03B46A43E0911EBC184D4A', '5acad', 'https://images.nowcoder.com/head/686m.png', 'zhangjf233@163.com', '0');
-INSERT INTO `user` VALUES ('42', 'admin', 'F79FFA79A4D2D14DCE36E4E21033765C', '3cfa6', 'https://images.nowcoder.com/head/257m.png', '565421368@qq.com', '0');
+INSERT INTO `user` VALUES ('40', '吴彦祖', '67D5B0882233FDAD97B1014E8429FE69', '5b9c6', '/images/head/head1.jpg', '1594899926@qq.com', '0');
+INSERT INTO `user` VALUES ('41', '刘德华', '5B67F0A01C03B46A43E0911EBC184D4A', '5acad', '/images/head/head3.jpg', 'zhangjf233@163.com', '0');
+INSERT INTO `user` VALUES ('42', 'admin', 'F79FFA79A4D2D14DCE36E4E21033765C', '3cfa6', '/images/head/head5.jpg', '565421368@qq.com', '0');
 INSERT INTO `user` VALUES ('43', '张小凡', '67D5B0882233FDAD97B1014E8429FE69', '5b9c6', 'https://images.nowcoder.com/head/994m.png', '899926@qq.com', '0');
 INSERT INTO `user` VALUES ('44', '李袁杰', '67D5B0882233FDAD97B1014E8429FE69', '5b9c6', 'https://images.nowcoder.com/head/257m.png', 'ngjf233@163.com', '0');
 INSERT INTO `user` VALUES ('45', '袁世凯', '67D5B0882233FDAD97B1014E8429FE69', '5b9c6', 'https://images.nowcoder.com/head/257m.png', '524268@qq.com', '0');
 INSERT INTO `user` VALUES ('46', '吴庆生', '67D5B0882233FDAD97B1014E8429FE69', '5b9c6', 'https://images.nowcoder.com/head/686m.png', '23145324@qq.com', '0');
+INSERT INTO `user` VALUES ('49', '李明', '123qwe.', 'qwert', 'http:www.xxx.jpg', 'test233@163.com', '0');
+INSERT INTO `user` VALUES ('50', '杨洋', '59327E8AF12B7E149E2348E1A43C4F70', '03cb1', '/images/head/head7.jpg', 'zjfscorpio@163.com', '0');

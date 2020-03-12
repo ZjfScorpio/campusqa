@@ -15,5 +15,6 @@ public class CampusQaApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CampusQaApplication.class, args);
+		System.out.println("---------------------启动完成！------------------");
 	}
 }

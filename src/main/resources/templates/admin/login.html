@@ -51,15 +51,15 @@
     <div class="demo">
         <div class="login">
             <div class="login__check">
-                <img src="/adminlte/dist/img/logo.png" alt="">
-                <h2 class="subtitle" style="color: red;">
+                <img src="/adminlte/dist/img/logo.png" alt="" style="width: 144px;height: 144px; border-radius: 72px; padding: 0" >
+                <h2 class="subtitle" style="color: red;font-size: 14px">
                     <#if msg??>
                     ${msg}
                     <#else>
                     <br/>
                 </#if>
                 </h2>
-                <h2>以管理员身份登录</h2>
+                <h2 style="font-size: 14px">以管理员身份登录</h2>
             </div>
 
             <form action="/admin/login" class="login__form" method="post">

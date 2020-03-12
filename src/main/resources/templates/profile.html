@@ -5,20 +5,23 @@
 <script>
     //删除问题
     function delQuestion(id) {
-        $.ajax({
-            type: "post",
-            url: "/question/del",
-            data: {"id":id},
-            dataType: "json",
-            success: function(data){
-                alert("删除成功");
-                document.location.reload();
-            },
-            error:function(data){
-                alert("删除失败，发生异常");
-                document.location.reload();
-            }
-        });
+        var flag = confirm("确定删除吗？");
+        if(flag){
+            $.ajax({
+                type: "post",
+                url: "/question/del",
+                data: {"id":id},
+                dataType: "json",
+                success: function(data){
+                    document.location.reload();
+                },
+                error:function(data){
+                    alert("删除失败，发生异常");
+                    document.location.reload();
+                }
+            });
+        }
+
     }
 </script>
     <div class="zg-wrap zu-main clearfix " role="main">
@@ -47,11 +50,13 @@
                                         /
                                         <a  href="/user/${profileUser.user.id}/followees" class="zg-link-gray-normal">${profileUser.followeeCount}关注</a>
                                         /
+                                        <a  href="/user/${profileUser.user.id}/follow_questions" class="zg-link-gray-normal">收藏</a>
+                                        /
                                         <a  href="/user/${profileUser.user.id}" class="zg-link-gray-normal">${profileUser.questionCount}提问</a>
                                         /
                                         <a  href="/user/${profileUser.user.id}/comments" class="zg-link-gray-normal">${profileUser.commentCount}回答</a>
-                                        /
-                                        <a  href="/user/${profileUser.user.id}/follow_questions" class="zg-link-gray-normal">收藏</a>
+
+
                                     </div>
                                 </div>
                             </div>

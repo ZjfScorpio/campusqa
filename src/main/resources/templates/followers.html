@@ -18,10 +18,14 @@
 </style>
     <div id="main">
         <div class="zg-wrap zu-main clearfix ">
+            <span class="zm-profile-section-name">
+                <a href="/user/${curUser.id}">返回上一级</a>
+            </span>
+            <br>
             <div class="zm-profile-section-wrap zm-profile-followee-page">
                 <div class="zm-profile-section-head">
                     <span class="zm-profile-section-name">
-                        <a href="#">${curUser.name}</a> 粉丝 ${followerCount} 人
+                        <a href="/user/${curUser.id}">${curUser.name}</a> 粉丝 ${followerCount} 人
                     </span>
                 </div>
                 <div class="zm-profile-section-list">

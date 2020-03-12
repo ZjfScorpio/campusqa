@@ -1,76 +1,77 @@
+<!--/*-->
+<!--author:吴雨微-->
+<!--createtime：2020-3-2-->
+<!--updatetime：2020-3-10-->
+<!--*/-->
 <!DOCTYPE html>
 <html lang="zh-CN"
       class="is-AppPromotionBarVisible cssanimations csstransforms csstransitions flexbox no-touchevents no-mobile">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="renderer" content="webkit">
-    <meta name="description" content="一个真实的网络问答社区，帮助你寻找答案，分享知识。">
-    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>登录-校园内自动知识应答平台</title>
-    <link rel="dns-prefetch" href="">
-    <link rel="stylesheet" href="../styles/login.css">
-    <link rel="stylesheet" href="../styles/common.css">
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1200, initial-scale=0.66"/>
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="/styles/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles/my-login.css">
 </head>
-<body class="zhi  no-auth">
-<#include "author.html" />
-<div class="index-main">
-    <div class="index-main-body">
-        <div class="index-header">
-            <!--
-            <h1 class="logo hide-text"><img src="../images/res/zhi.jpg" alt=""></h1>
-            -->
-            <h2 class="subtitle">
-                校园内自动知识应答平台
-            </h2>
-            <h2 class="subtitle">
-                Powered by —— 米老鼠团队
-            </h2>
-            <h2 class="subtitle" style="color: red;">
-                <#if msg??>
-                ${msg}
-                <#else>
-                <br/>
-                </#if>
-            </h2>
-            <h3>没有账号？ 点击<a href="/reg_prepare">注册</a></h3>
-            <!--
-            <button class="sign-button submit"  onclick="window.location.href='/reg_prepare'">注册</button>
-            -->
-        </div>
+<body class="my-login-page">
+<section class="h-100">
+    <div class="container h-100" style="margin:auto;width: 400px;height: 300px;">
+        <div class="row justify-content-md-center h-100">
+            <div class="card-wrapper">
+                <div class="brand">
+                    <img src="/images/img/logo.png">
+                </div>
+                <div class="card fat">
+                    <div class="card-body">
+                        <h3 class="card-title" style=" text-align:center;">校园内自动知识应答平台</h3>
+                        <h2 class="subtitle" style="color: red; text-align:center; font-size: 15px;">
+                            <#if msg??>
+                                ${msg}
+                            </#if>
+                        </h2>
+                        <form method="POST">
 
-        <div class="desk-front sign-flow clearfix sign-flow-simple">
-            <div class="view view-signin" data-za-module="SignInForm" style="display: block;">
-                <form action="/reg" id="loginReg" method="post">
-                    <input type="hidden" name="_xsrf" value="21aa1c8d254df2899b23ab9afbd62a53">
-                    <div class="group-inputs">
-                        <div class="email input-wrapper">
-                            <input type="text" name="username" aria-label="手机号或邮箱" placeholder="用户名" required="">
-                        </div>
-                        <div class="input-wrapper">
-                            <input type="password" name="password" aria-label="密码" placeholder="密码" required="">
-                        </div>
+                            <div class="form-group">
+                                <label for="username">用户名</label>
+                                <input id="username" type="text" class="form-control" name="username" aria-label="手机号或邮箱">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">密码</label>
+<!--                                <input type="password" name="password" aria-label="密码" placeholder="密码" required="">-->
+                                <!--										<a href="forgot.html" class="float-right">-->
+                                <!--											Forgot Password?-->
+                                <!--										</a>-->
+                                <input id="password" type="password" class="form-control" name="password" aria-label="密码" placeholder="密码" required="">
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    <input type="checkbox" name="rememberMe" value="true"> 记住我
+                                </label>
+                            </div>
+
+                            <div class="form-group no-margin">
+                                <button type="submit" class="btn btn-primary btn-block" onclick="form=document.getElementById('loginReg');form.action='/login'">
+                                    登录
+                                </button>
+                            </div>
+                            <div class="margin-top20 text-center">
+                                没有账号? 点击<a href="/reg_prepare">注册</a>
+                            </div>
+                        </form>
                     </div>
-                    <input type="hidden" name="next" value="${next}"/>
-                    <div class="button-wrapper command clearfix">
-                        <button class="sign-button submit" type="submit" onclick="form=document.getElementById('loginReg');form.action='/login'">登录</button>
-                    </div>
-                    <div class="signin-misc-wrapper clearfix">
-                        <label class="remember-me">
-                            <input type="checkbox" name="rememberMe" checked="" value="true"> 记住我
-                        </label>
-                        <!--
-                        <a class="unable-login" href="#">无法登录?</a>
-                        -->
-                    </div>
-                </form>
+                </div>
+                <div class="footer">
+                    Copyright ©2020 Powered By Mickey . All Rights Reserved
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="my_footer">
-    <p>Copyright ©2020 Powered By Mickey . All Rights Reserved</p>
-</div>
+</section>
+
+<script src="/scripts/jquery.min.js"></script>
+<script src="/scripts/bootstrap.min.js"></script>
+<script src="/scripts/my-login.js"></script>
 </body>
 </html>

@@ -4,20 +4,22 @@
 <script>
     //删除评论
     function delComment(id) {
-        $.ajax({
-            type: "post",
-            url: "/comment/del",
-            data: {"id":id},
-            dataType: "json",
-            success: function(data){
-                alert("删除成功");
-                document.location.reload();
-            },
-            error:function(data){
-                alert("删除失败，发生异常");
-                document.location.reload();
-            }
-        });
+        var flag = confirm("确定删除吗?");
+        if(flag){
+            $.ajax({
+                type: "post",
+                url: "/comment/del",
+                data: {"id":id},
+                dataType: "json",
+                success: function(data){
+                    document.location.reload();
+                },
+                error:function(data){
+                    alert("删除失败，发生异常");
+                    document.location.reload();
+                }
+            });
+        }
     }
 </script>
 <div class="zg-wrap zu-main clearfix with-indention-votebar" itemscope="" itemtype="http://schema.org/Question"
@@ -26,28 +28,15 @@
         <div class="zu-main-content-inner">
             <meta itemprop="isTopQuestion" content="false">
             <meta itemprop="visitsCount" content="402">
-            <!--
-            <div class="zm-tag-editor zg-section">
-                <div class="zm-tag-editor-labels zg-clear">
-                    <a data-tip="t$b$19550730" class="zm-item-tag" href="">新浪微博</a>
-                    <a data-tip="t$b$19554412" class="zm-item-tag" href="">网络营销</a>
-                    <a data-tip="t$b$19559739" class="zm-item-tag" href="">微博粉丝</a>
-                    <a data-tip="t$b$19560290" class="zm-item-tag" href="">僵尸粉</a>
-                    <a data-tip="t$b$19565757" class="zm-item-tag" href="">网络水军</a>
-                    <a href="javascript:;" class="zu-edit-button" name="edit">
-                        <i class="zu-edit-button-icon"></i>修改</a>
-                </div>
-            </div>
-            -->
             <div id="zh-question-title" data-editable="true" class="zm-editable-status-normal">
                 <h2 class="zm-item-title">
 
-                    <span class="zm-editable-content">${question.title}</span>
+                    <span class="zm-editable-content" style="font-size: 16px;">${question.title}</span>
 
                 </h2>
             </div>
             <div id="zh-question-detail" class="zm-item-rich-text zm-editable-status-normal">
-                <div class="zm-editable-content">${question.content}</div>
+                <div class="zm-editable-content" style="font-size: 15px;">${question.content}</div>
             </div>
             <div class="zm-side-section">
                 <div class="zm-side-section-inner" id="zh-question-side-header-wrap">
@@ -107,6 +96,7 @@
                     <span class="label sr-only">反对，不会显示你的姓名</span>
                     </button>
                 </div>
+
                 <div class="answer-head">
                     <div class="zm-item-answer-author-info">
                         <a class="zm-item-link-avatar avatar-link" href="/user/${comment.user.id}"  data-tip="p$t$yingxiaodao"
@@ -115,21 +105,9 @@
                         </a>
                         <a class="author-link" data-tip="p$t$yingxiaodao" target="_blank" href="/user/${comment.user.id}">&nbsp;&nbsp;${comment.user.name}</a>
                     </div>
-                    <!--显示赞同人数
-                    <div class="zm-item-vote-info">
-                                <span class="voters text">
-                                    <span href="" class="more text">
-                                        <span class="js-voteCount">${comment.likeCount}</span>&nbsp;人赞同了该回答
-                                    </span>
-                                </span>
-                    </div>
-                    -->
                 </div>
-                <div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="6727688"
-                     data-action="/answer/content" data-author-name="营销岛"
-                     data-entry-url="/question/36301524/answer/66862039">
-
-                    <div class="zm-editable-content clearfix">
+                <div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="6727688" data-entry-url="/question/36301524/answer/66862039">
+                    <div class="zm-editable-content clearfix" style="font-size: 15px;">
                         ${comment.comment.content}
                     </div>
                 </div>
@@ -139,10 +117,6 @@
                         <span itemprop="url" class="answer-data-link meta-item" target="_blank" href="">
                             发布于${comment.comment.createdDate?string("yyyy-MM-dd HH:mm:ss")}
                         </span>
-                        <!--回答评论
-                        <a href="" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
-                            <i class="z-icon-comment"></i>4 条评论</a>
-                        -->
                         <#if comment.user.id == user.id >
                         <a href="javascript:delComment(${comment.comment.id})" name="delComment" class="meta-item toggle-comment js-toggleCommentBox">
                             删除评论
@@ -161,7 +135,11 @@
     <form action="/addComment" method="post">
         <input type="hidden" name="questionId" value="${question.id}"/>
         <!-- 判断是否禁言-->
-        <#if user.status == 0 >
+        <#if user.status == 1 >
+        <br>
+        <br>
+        <h1 style="color: red;font-size: large">对不起，你已被禁言，请联系管理员</h1>
+        <#else>
         <div id="zh-question-answer-form-wrap" class="zh-question-answer-form-wrap">
             <div class="zm-editable-editor-wrap" style="">
                 <div class="zm-editable-editor-outer">
@@ -177,10 +155,6 @@
                 </div>
             </div>
         </div>
-        <#else>
-        <br>
-        <br>
-        <h1 style="color: red;font-size: large">对不起，你已被禁言，请联系管理员</h1>
         </#if>
     </form>
 

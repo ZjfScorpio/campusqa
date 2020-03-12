@@ -34,7 +34,7 @@ public class Constant {
     public static final String MAIL_NICKNAME = "校园内自动知识应答平台-米老鼠团队";//昵称
     public static final String INTERNET_ADDRESS = "<565421368@qq.com>";//网络地址
     public static final String USER_NAME = "565421368@qq.com";//用户名
-    public static final String PASSWORD = "iowmfsornqbzbbfe";//授权码
+    public static final String PASSWORD = "hipilswznjzxbcff";//授权码
     public static final String MAIL_HOST = "smtp.qq.com";//主机
 
 

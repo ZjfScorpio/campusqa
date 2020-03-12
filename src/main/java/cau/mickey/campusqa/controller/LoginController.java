@@ -64,7 +64,7 @@ public class LoginController {
                                @RequestParam(value = "password",required = false) String password){
         model.addAttribute("username",username);
         model.addAttribute("password",password);
-        model.addAttribute("msg","欢迎注册！");
+        //model.addAttribute("msg","欢迎注册！");
         return "register";
     }
 

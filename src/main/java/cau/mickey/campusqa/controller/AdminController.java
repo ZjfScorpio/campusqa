@@ -153,10 +153,9 @@ public class AdminController {
                                        @RequestParam(value = "date", required = false) String date,
                                        @RequestParam(value = "search", required = false) String search,
                                        HttpServletRequest request) {
-        Map<String,String[]> params = request.getParameterMap();
         List<Question> questions = qeustionService.getLatestQuestion(0,0,2000);
         PageInfo<Question> pageInfo = new PageInfo<>(questions);
-        return new PageBean<Question>(pageInfo);
+        return new PageBean<>(pageInfo);
     }
 
     @ResponseBody
