@@ -49,7 +49,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li class="user-header">
-                            <img src="adminlte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="adminlte/dist/img/logo.png" class="img-circle" alt="User Image">
 
                             <p>
                                 admin

@@ -61,6 +61,26 @@ public class UserController {
         }
         //model
         model.addAttribute("profileUser", vo);
+
+        //new
+        List<Integer> questionsId = qeustionService.getQuestionsId();
+        List<Integer> followQuestionsIds = new ArrayList<>();
+        for(Integer questionId:questionsId){
+            List<Integer> users = followService.getFollowers(CampusQaUtil.ENTITY_QUESTION, questionId, 200);
+            for(Integer user1:users){
+                if(user1==userId)
+                    followQuestionsIds.add(questionId);
+            }
+        }
+        List<Question> followQuestions = new ArrayList<>();
+        if(followQuestionsIds.size()>0){
+            for(Integer questionId:followQuestionsIds){
+                Question question = qeustionService.getById(questionId);
+                followQuestions.add(question);
+            }
+        }
+        model.addAttribute("followeeCount",followQuestions.size());
+
         return "profile";
     }
 
@@ -88,7 +108,7 @@ public class UserController {
         //model
         model.addAttribute("profileUser", vo);
 
-    //new
+    //new1
         List<Comment> comments = commentService.getCommentsByUserId(userId);
         List<ViewObject> commentsVos = new ArrayList<>();
         for(Comment comment:comments){
@@ -102,6 +122,26 @@ public class UserController {
             model.addAttribute("comments", commentsVos);
 
         }
+
+        //new2
+        List<Integer> questionsId = qeustionService.getQuestionsId();
+        List<Integer> followQuestionsIds = new ArrayList<>();
+        for(Integer questionId:questionsId){
+            List<Integer> users = followService.getFollowers(CampusQaUtil.ENTITY_QUESTION, questionId, 200);
+            for(Integer user1:users){
+                if(user1==userId)
+                    followQuestionsIds.add(questionId);
+            }
+        }
+        List<Question> followQuestions = new ArrayList<>();
+        if(followQuestionsIds.size()>0){
+            for(Integer questionId:followQuestionsIds){
+                Question question = qeustionService.getById(questionId);
+                followQuestions.add(question);
+            }
+        }
+        model.addAttribute("followeeCount",followQuestions.size());
+
         return "comments";
     }
 

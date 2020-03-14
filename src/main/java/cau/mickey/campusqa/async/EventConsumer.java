@@ -55,19 +55,21 @@ public class EventConsumer implements InitializingBean , ApplicationContextAware
                    //从redis中获取列表最后一个事件
                    List<String> events =redisAdapter.brpop(0,key);
                    //System.out.println(events);
-                   for(String message:events){
-                       //消息队列的第一个值可能是key,返回值的原因
-                       if(message.equals(key)){
-                           continue;
-                       }
-                       EventModel eventModel= JSON.parseObject(message,EventModel.class);
-                       if(!config.containsKey(eventModel.getType())){
-                           logger.error("不能识别的事件");
-                           continue;
-                       }
-                       //调用相应的事件处理器处理事件
-                       for(EventHandler handler :config.get(eventModel.getType())){
-                           handler.doHandle(eventModel);
+                   if(events!=null){
+                       for(String message:events){
+                           //消息队列的第一个值可能是key,返回值的原因
+                           if(message.equals(key)){
+                               continue;
+                           }
+                           EventModel eventModel= JSON.parseObject(message,EventModel.class);
+                           if(!config.containsKey(eventModel.getType())){
+                               logger.error("不能识别的事件");
+                               continue;
+                           }
+                           //调用相应的事件处理器处理事件
+                           for(EventHandler handler :config.get(eventModel.getType())){
+                               handler.doHandle(eventModel);
+                           }
                        }
                    }
                }

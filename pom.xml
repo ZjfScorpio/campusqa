@@ -6,7 +6,7 @@
 	<groupId>cau.mickey</groupId>
 	<artifactId>campusqa</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>campusqa</name>
 	<description>Campus automatic knowledge answering platform</description>
@@ -71,7 +71,7 @@
 		<dependency>
 			<groupId>redis.clients</groupId>
 			<artifactId>jedis</artifactId>
-			<version>2.9.0</version>
+			<version>2.9.3</version>
 		</dependency>
 
 		<dependency>
@@ -101,6 +101,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

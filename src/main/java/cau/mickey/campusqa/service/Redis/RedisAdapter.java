@@ -26,9 +26,9 @@ public class RedisAdapter implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         JedisPoolConfig config = new JedisPoolConfig();
+        config.setMaxTotal(500);
         config.setMaxIdle(200);
-        config.setMaxIdle(50);
-        config.setMaxWaitMillis(1000 * 100);
+        config.setMaxWaitMillis(10000);
         config.setTestOnBorrow(false);
         pool = new JedisPool(config,Constant.REDIS_IP,Constant.REDIS_PORT,10000,"123qwe");
     }
@@ -40,6 +40,9 @@ public class RedisAdapter implements InitializingBean {
             return jedis.sadd(key, value);
         } catch (Exception e) {
             logger.error("redis操作异常 " + e.getMessage());
+            if (jedis != null) {
+                jedis.close();
+            }
         } finally {
             if (jedis != null) {
                 jedis.close();
@@ -55,6 +58,9 @@ public class RedisAdapter implements InitializingBean {
             return jedis.hset(key, field, value);
         } catch (Exception e) {
             logger.error("redis操作异常 " + e.getMessage());
+            if (jedis != null) {
+                jedis.close();
+            }
         } finally {
             if (jedis != null) {
                 jedis.close();
@@ -70,6 +76,9 @@ public class RedisAdapter implements InitializingBean {
             return jedis.hget(key, field);
         } catch (Exception e) {
             logger.error("redis操作异常 " + e.getMessage());
+            if (jedis != null) {
+                jedis.close();
+            }
         } finally {
             if (jedis != null) {
                 jedis.close();
@@ -85,6 +94,9 @@ public class RedisAdapter implements InitializingBean {
             return jedis.del(key);
         } catch (Exception e) {
             logger.error("redis操作异常 " + e.getMessage());
+            if (jedis != null) {
+                jedis.close();
+            }
         } finally {
             if (jedis != null) {
                 jedis.close();
@@ -100,6 +112,9 @@ public class RedisAdapter implements InitializingBean {
             return jedis.expire(key,timeout);
         } catch (Exception e) {
             logger.error("redis操作异常 " + e.getMessage());
+            if (jedis != null) {
+                jedis.close();
+            }
         } finally {
             if (jedis != null) {
                 jedis.close();
@@ -115,6 +130,9 @@ public class RedisAdapter implements InitializingBean {
             return jedis.scard(key);
         } catch (Exception e) {
             logger.error("redis操作异常 " + e.getMessage());
+            if (jedis != null) {
+                jedis.close();
+            }
         } finally {
             if (jedis != null) {
                 jedis.close();
@@ -130,6 +148,9 @@ public class RedisAdapter implements InitializingBean {
             return jedis.srem(key, value);
         } catch (Exception e) {
             logger.error("redis操作异常 " + e.getMessage());
+            if (jedis != null) {
+                jedis.close();
+            }
         } finally {
             if (jedis != null) {
                 jedis.close();
@@ -145,6 +166,9 @@ public class RedisAdapter implements InitializingBean {
             return jedis.sismember(key, value);
         } catch (Exception e) {
             logger.error("redis操作异常 " + e.getMessage());
+            if (jedis != null) {
+                jedis.close();
+            }
         } finally {
             if (jedis != null) {
                 jedis.close();
@@ -160,6 +184,9 @@ public class RedisAdapter implements InitializingBean {
             return jedis.exists(key);
         } catch (Exception e) {
             logger.error("redis操作异常 " + e.getMessage());
+            if (jedis != null) {
+                jedis.close();
+            }
         } finally {
             if (jedis != null) {
                 jedis.close();
@@ -175,6 +202,9 @@ public class RedisAdapter implements InitializingBean {
             return jedis.lpush(key, value);
         } catch (Exception e) {
             logger.error("redis操作异常 " + e.getMessage());
+            if (jedis != null) {
+                jedis.close();
+            }
         } finally {
             if (jedis != null) {
                 jedis.close();
@@ -190,6 +220,9 @@ public class RedisAdapter implements InitializingBean {
             return jedis.brpop(timeout, key);
         } catch (Exception e) {
             logger.error("发生异常" + e.getMessage());
+            if (jedis != null) {
+                jedis.close();
+            }
         } finally {
             if (jedis != null) {
                 jedis.close();
@@ -207,6 +240,9 @@ public class RedisAdapter implements InitializingBean {
             return jedis.multi();
         } catch (Exception e) {
             logger.error("redis事务异常" + e.getMessage());
+            if (jedis != null) {
+                jedis.close();
+            }
         }
         return null;
     }
@@ -216,6 +252,9 @@ public class RedisAdapter implements InitializingBean {
             return tx.exec();
         } catch (Exception e) {
             logger.error("redis事务异常" + e.getMessage());
+            if (jedis != null) {
+                jedis.close();
+            }
         } finally {
             if (tx != null) {
                 try {
@@ -239,6 +278,9 @@ public class RedisAdapter implements InitializingBean {
             return jedis.zadd(key, score, value);
         } catch (Exception e) {
             logger.error("redis操作异常 " + e.getMessage());
+            if (jedis != null) {
+                jedis.close();
+            }
         } finally {
             if (jedis != null) {
                 jedis.close();
@@ -254,6 +296,9 @@ public class RedisAdapter implements InitializingBean {
             return jedis.zrevrange(key, start, end);
         } catch (Exception e) {
             logger.error("redis操作异常 " + e.getMessage());
+            if (jedis != null) {
+                jedis.close();
+            }
         } finally {
             if (jedis != null) {
                 jedis.close();
@@ -269,6 +314,9 @@ public class RedisAdapter implements InitializingBean {
             return jedis.zcard(key);
         } catch (Exception e) {
             logger.error("redis操作异常 " + e.getMessage());
+            if (jedis != null) {
+                jedis.close();
+            }
         } finally {
             if (jedis != null) {
                 jedis.close();
@@ -284,6 +332,9 @@ public class RedisAdapter implements InitializingBean {
             return jedis.zscore(key, member);
         } catch (Exception e) {
             logger.error("redis中不存在该成员");
+            if (jedis != null) {
+                jedis.close();
+            }
         } finally {
             if (jedis != null) {
                 jedis.close();
